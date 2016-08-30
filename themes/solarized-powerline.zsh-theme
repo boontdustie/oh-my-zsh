@@ -48,9 +48,9 @@ local ZSH_TIME=%D{%H:%M}
 local PADDING=''
 
 if [ $OS = "Darwin" ]; then
-	local LOGO="🐩  💩 "
+        local LOGO="୧༼ಠ益ಠ༽୨"
 else
-	local LOGO="🐧"
+        local LOGO="🐧"
 fi
 
 GIT_DIRTY_COLOR=%F{196}
@@ -85,9 +85,9 @@ PROMPT="
 "
 # username
 if [ $ZSH_POWERLINE_SHOW_USER = true ]; then
-	local USER="%n"
+        local USER="%n"
     PROMPT="${PROMPT}${FG_COLOR_BLUE}${BG_COLOR_BASE3}${PADDING}${USER}"
-	PADDING=' '
+        PADDING=' '
 fi
 
 # hostname
@@ -100,32 +100,32 @@ if [ $ZSH_POWERLINE_SHOW_IP = true ]; then
         # replace dot by dash
         IP=`echo -n $IP | tail -n 1 | sed "s/\./-/g"`
     fi
-	if [ $ZSH_POWERLINE_SHOW_USER = true ]; then
-		PROMPT="${PROMPT}${FG_COLOR_GREEN}${BG_COLOR_BASE3} at"
-	fi
+        if [ $ZSH_POWERLINE_SHOW_USER = true ]; then
+                PROMPT="${PROMPT}${FG_COLOR_GREEN}${BG_COLOR_BASE3} at"
+        fi
     PROMPT="${PROMPT}${FG_COLOR_VIOLET}${BG_COLOR_BASE3}${PADDING}${IP}"
-	PADDING=' '
+        PADDING=' '
 fi
 # arrow symbol for username and ip/host
 if [ $ZSH_POWERLINE_SHOW_USER = true ] || [ $ZSH_POWERLINE_SHOW_IP = true ]; then
-	if [ $ZSH_POWERLINE_SHOW_TIME = true ]; then
-		PROMPT="${PROMPT} ${FG_COLOR_BASE3}${BG_COLOR_BASE01}${ARROW_SYMBOL}"
-	else
-		PROMPT="${PROMPT} ${FG_COLOR_BASE3}${BG_COLOR_BASE02}${ARROW_SYMBOL}"
-	fi
+        if [ $ZSH_POWERLINE_SHOW_TIME = true ]; then
+                PROMPT="${PROMPT} ${FG_COLOR_BASE3}${BG_COLOR_BASE01}${ARROW_SYMBOL}"
+        else
+                PROMPT="${PROMPT} ${FG_COLOR_BASE3}${BG_COLOR_BASE02}${ARROW_SYMBOL}"
+        fi
 fi
 
 # datetime
 if [ $ZSH_POWERLINE_SHOW_TIME = true ]; then
-	PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE01}${PADDING}${ZSH_TIME}"
-	PROMPT="${PROMPT} ${FG_COLOR_BASE01}${BG_COLOR_BASE02}${ARROW_SYMBOL}"
-	PADDING=' '
+        PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE01}${PADDING}${ZSH_TIME}"
+        PROMPT="${PROMPT} ${FG_COLOR_BASE01}${BG_COLOR_BASE02}${ARROW_SYMBOL}"
+        PADDING=' '
 fi
 
 # OS logo
 if [ $ZSH_POWERLINE_SHOW_OS = true ]; then
-	PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE02}${PADDING}${LOGO}"
-	PADDING=' '
+        PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE02}${PADDING}${LOGO}"
+        PADDING=' '
 fi
 
 # current directory (%E hightline all line to end)
@@ -134,32 +134,30 @@ PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE02} ${DIRECOTORY_DEPTH}"
 
 # show git status
 if [ $ZSH_POWERLINE_SHOW_GIT_BRANCH_ONLY = true ]; then
-	# get git branch function
-	git_branch() {
-		git rev-parse --git-dir > /dev/null 2>&1
-		if [ "$?" = "0" ]; then
-			BRANCH=$(git branch | grep '*' | cut -d' ' -f2-)
-			echo ${ZSH_THEME_GIT_PROMPT_PREFIX}${BRANCH}
-		fi
-	}
-	PROMPT="${PROMPT}"'$(git_branch)'
+        # get git branch function
+        git_branch() {
+                git rev-parse --git-dir > /dev/null 2>&1
+                if [ "$?" = "0" ]; then
+                        BRANCH=$(git branch | grep '*' | cut -d' ' -f2-)
+                        echo ${ZSH_THEME_GIT_PROMPT_PREFIX}${BRANCH}
+                fi
+        }
+        PROMPT="${PROMPT}"'$(git_branch)'
 elif [ $ZSH_POWERLINE_SHOW_GIT_STATUS = true ]; then
-	PROMPT="${PROMPT}"'$(git_prompt_info)'
+        PROMPT="${PROMPT}"'$(git_prompt_info)'
 fi
 
 # single line or double lines
 if [ $ZSH_POWERLINE_SINGLE_LINE = false ]; then
-	PROMPT="${PROMPT} %E
+        PROMPT="${PROMPT} %E
   ${RESET}${FG_COLOR_BASE02}${ARROW_SYMBOL}"
 else
-	PROMPT="${PROMPT} ${RESET}${FG_COLOR_BASE02}${ARROW_SYMBOL}"
+        PROMPT="${PROMPT} ${RESET}${FG_COLOR_BASE02}${ARROW_SYMBOL}"
 fi
 
 # reset
 PROMPT="$PROMPT ${RESET} "
 
 if [ $ZSH_POWERLINE_SHOW_RETURN_CODE = true ]; then
-	RPROMPT="${RETURN_CODE}"
+        RPROMPT="${RETURN_CODE}"
 fi
-
-
